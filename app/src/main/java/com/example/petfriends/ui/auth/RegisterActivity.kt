@@ -118,7 +118,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(baseContext, getString(R.string.failed_register),
                     Toast.LENGTH_SHORT).show()
                 binding.edEmailRegister.error = getString(R.string.email_is_used)
-
+                binding.edEmailRegister.setText("")
             }
         }
     }
