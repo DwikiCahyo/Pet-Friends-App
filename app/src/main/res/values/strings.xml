@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Pet Friends</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="sign_in">Sign in</string>
+    <string name="doesn_t_have_an_account">doesn\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="enter_name">Enter name!</string>
+    <string name="enter_email">Enter email!</string>
+    <string name="enter_password">Enter password!</string>
+    <string name="length_password">Password must be at least 6 characters!</string>
+    <string name="email_invalid">Must valid email!</string>
+    <string name="email_is_used">Email is already taken</string>
+    <string name="success">Success</string>
+    <string name="success_register">Success register</string>
+    <string name="failed">Failed</string>
+    <string name="failed_register">Failed register account</string>
+    <string name="cont">continue</string>
+
+    <string name="success_sign_in">Success sign in</string>
+    <string name="failed_sign_in">Failed sign in</string>
+    <string name="wrong_password">Wrong email or password!</string>
+    <string name="success_logout">Success logout</string>
+    <string name="already_login">You already logged in!</string>
+</resources>

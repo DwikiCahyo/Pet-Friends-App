@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "606728525988",
+    "firebase_url": "https://my-pets-app-74573-default-rtdb.firebaseio.com",
+    "project_id": "my-pets-app-74573",
+    "storage_bucket": "my-pets-app-74573.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606728525988:android:63abbd6a147b6c60486e31",
+        "android_client_info": {
+          "package_name": "com.example.petfriends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606728525988-akoj74a7rruhfpg1qs73r0ucbov09q9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW_21kqekmIP97ZNzkdmtmOI9w3XUKNu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606728525988-akoj74a7rruhfpg1qs73r0ucbov09q9h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
