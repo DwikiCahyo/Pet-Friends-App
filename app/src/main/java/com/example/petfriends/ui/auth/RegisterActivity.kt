@@ -36,6 +36,8 @@ class RegisterActivity : AppCompatActivity() {
 
         mAuth = Firebase.auth
 
+        showLoading(false)
+
         setupRegister()
         binding.tvLoginRegister.setOnClickListener {
             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
@@ -99,9 +101,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun actionAuth(user: UserModel) {
+        showLoading(true)
         mAuth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener(this@RegisterActivity){
             val mUser = Firebase.auth.currentUser
             if(it.isSuccessful) {
+                showLoading(false)
                 val profileUpdates = userProfileChangeRequest{
                     displayName = user.name
                 }
@@ -114,6 +118,7 @@ class RegisterActivity : AppCompatActivity() {
                 val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
                 startActivity(intent)
             }else {
+                showLoading(false)
                 Log.d(ContentValues.TAG, getString(R.string.failed_register), it.exception)
                 Toast.makeText(baseContext, getString(R.string.failed_register),
                     Toast.LENGTH_SHORT).show()

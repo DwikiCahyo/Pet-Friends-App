@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.petfriends.R
@@ -34,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        showLoading(false)
 
         supportActionBar?.hide()
 
@@ -108,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setupLogin() {
         binding.apply {
             btnLogin.setOnClickListener {
+                showLoading(true)
                 val email = edEmailLogin.text.toString()
                 val password = edPasswordLogin.text.toString()
                 when{
@@ -129,12 +133,15 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else -> {
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
+
                             if (it.isSuccessful){
+                                showLoading(false)
                                 Log.d(ContentValues.TAG, getString(R.string.success_sign_in))
                                 Toast.makeText(this@LoginActivity, getString(R.string.success_sign_in), Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                 startActivity(intent)
                             }else{
+                                showLoading(false)
                                 Log.e(ContentValues.TAG, getString(R.string.failed_sign_in), it.exception)
                                 Toast.makeText(this@LoginActivity, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
                             }
@@ -157,6 +164,10 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = mAuth.currentUser
         updateUI(currentUser)
+    }
+
+    private fun showLoading(isLoading: Boolean){
+        binding.pbLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {
