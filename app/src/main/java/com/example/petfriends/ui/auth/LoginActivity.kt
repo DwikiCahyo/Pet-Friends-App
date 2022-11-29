@@ -132,11 +132,12 @@ class LoginActivity : AppCompatActivity() {
                         edEmailLogin.requestFocus()
                     }
                     else -> {
+                        showLoading(true)
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
-                            showLoading(true)
                             if (it.isSuccessful){
                                 showLoading(false)
                                 Log.d(ContentValues.TAG, getString(R.string.success_sign_in))
+
                                 AlertDialog.Builder(this@LoginActivity).apply {
                                     setTitle(getString(R.string.success))
                                     setMessage(getString(R.string.success_sign_in))
@@ -184,7 +185,7 @@ class LoginActivity : AppCompatActivity() {
         updateUI(currentUser)
     }
 
-    private fun showLoading(isLoading: Boolean){
+   fun showLoading(isLoading: Boolean){
         binding.pbLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
