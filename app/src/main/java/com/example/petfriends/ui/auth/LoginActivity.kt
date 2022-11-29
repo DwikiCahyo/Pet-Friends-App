@@ -132,8 +132,8 @@ class LoginActivity : AppCompatActivity() {
                         edEmailLogin.requestFocus()
                     }
                     else -> {
-                        showLoading(true)
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
+                            showLoading(true)
                             if (it.isSuccessful){
                                 showLoading(false)
                                 Log.d(ContentValues.TAG, getString(R.string.success_sign_in))

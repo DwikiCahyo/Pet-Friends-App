@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val currentUser = mAuth.currentUser
+        binding.tvName.text = currentUser?.displayName
         updateUI(currentUser)
     }
 
