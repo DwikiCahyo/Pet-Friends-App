@@ -29,4 +29,12 @@
     <string name="wrong_password">Wrong email or password!</string>
     <string name="success_logout">Success logout</string>
     <string name="already_login">You already logged in!</string>
+
+    <string name="home">Home</string>
+    <string name="discovery">Discovery</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

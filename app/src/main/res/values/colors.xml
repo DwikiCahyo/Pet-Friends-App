@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Blue-->
-    <color name="blue"></color>
+    <color name="blue">#1194AA</color>
     <color name="blue_light">#FFBB86FC</color>
     <color name="blue_dark">#FF6200EE</color>
 
@@ -16,4 +16,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="home">#1194AA</color>
+    <color name="discovery">#C9379D</color>
+    <color name="bookmark">#AE7E0F</color>
+    <color name="profile">#5B37B7</color>
+
+    <color name="home_20">#4D1194AA</color>
+    <color name="discovery_20">#4DC9379D</color>
+    <color name="bookmark_20">#4DAE7E0F</color>
+    <color name="profile_20">#4D5B37B7</color>
+
+
 </resources>

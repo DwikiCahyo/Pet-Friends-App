@@ -9,9 +9,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import com.example.petfriends.R
 import com.example.petfriends.databinding.ActivityLoginBinding
-import com.example.petfriends.ui.home.HomeActivity
+import com.example.petfriends.ui.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -103,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null){
-            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
     }
@@ -111,7 +112,6 @@ class LoginActivity : AppCompatActivity() {
     private fun setupLogin() {
         binding.apply {
             btnLogin.setOnClickListener {
-                showLoading(true)
                 val email = edEmailLogin.text.toString()
                 val password = edPasswordLogin.text.toString()
                 when{
@@ -132,17 +132,35 @@ class LoginActivity : AppCompatActivity() {
                         edEmailLogin.requestFocus()
                     }
                     else -> {
+                        showLoading(true)
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
-
                             if (it.isSuccessful){
                                 showLoading(false)
                                 Log.d(ContentValues.TAG, getString(R.string.success_sign_in))
+                                AlertDialog.Builder(this@LoginActivity).apply {
+                                    setTitle(getString(R.string.success))
+                                    setMessage(getString(R.string.success_sign_in))
+                                    setPositiveButton(getString(R.string.cont)){ _, _ ->
+                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    create()
+                                    show()
+                                }
                                 Toast.makeText(this@LoginActivity, getString(R.string.success_sign_in), Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                                startActivity(intent)
                             }else{
                                 showLoading(false)
                                 Log.e(ContentValues.TAG, getString(R.string.failed_sign_in), it.exception)
+                                AlertDialog.Builder(this@LoginActivity).apply {
+                                    setTitle(getString(R.string.failed))
+                                    setMessage(getString(R.string.wrong_password))
+                                    setPositiveButton(getString(R.string.cont)){ _, _ ->
+                                        show().dismiss()
+                                    }
+                                    create()
+                                    show()
+                                }
                                 Toast.makeText(this@LoginActivity, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
                             }
                         }

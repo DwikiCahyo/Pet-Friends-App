@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.petfriends.R
 import com.example.petfriends.data.local.model.UserModel
 import com.example.petfriends.databinding.ActivityRegisterBinding
-import com.example.petfriends.ui.home.HomeActivity
+import com.example.petfriends.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -90,8 +90,6 @@ class RegisterActivity : AppCompatActivity() {
                                 }else {
                                     showLoading(false)
                                     Log.w(ContentValues.TAG, "failure", it.exception)
-                                    Toast.makeText(baseContext, getString(R.string.failed_register),
-                                        Toast.LENGTH_SHORT).show()
                                 }
                             }
                     }
@@ -109,30 +107,40 @@ class RegisterActivity : AppCompatActivity() {
                 val profileUpdates = userProfileChangeRequest{
                     displayName = user.name
                 }
-                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){
+                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ it ->
                     if (it.isSuccessful){
                         Log.d(ContentValues.TAG, "User profile updated.")
+                    }else{
+                        Log.d(ContentValues.TAG, "User profile error:", it.exception)
                     }
                 }
                 Log.d(ContentValues.TAG, getString(R.string.success_register))
-                val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
-                startActivity(intent)
+                AlertDialog.Builder(this@RegisterActivity).apply {
+                    setTitle(getString(R.string.success))
+                    setMessage(getString(R.string.success_register))
+                    setPositiveButton(getString(R.string.cont)){ _, _ ->
+                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    create()
+                    show()
+                }
             }else {
                 showLoading(false)
                 Log.d(ContentValues.TAG, getString(R.string.failed_register), it.exception)
-                Toast.makeText(baseContext, getString(R.string.failed_register),
-                    Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(this@RegisterActivity).apply {
+                    setTitle(getString(R.string.failed))
+                    setMessage(getString(R.string.email_is_used))
+                    setPositiveButton(getString(R.string.cont)){ _, _ ->
+                        show().dismiss()
+                    }
+                    create()
+                    show()
+                }
                 binding.edEmailRegister.error = getString(R.string.email_is_used)
                 binding.edEmailRegister.setText("")
             }
-        }
-    }
-
-    private fun clear() {
-        binding.apply {
-            edNameRegister.setText("")
-            edEmailRegister.setText("")
-            edPasswordRegister.setText("")
         }
     }
 
