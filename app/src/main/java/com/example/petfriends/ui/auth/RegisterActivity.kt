@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupRegister() {
         binding.apply {
             btnRegister.setOnClickListener {
-//                val uId = tvUidRegister.text.toString()
+                val photo = tvUidRegister.text.toString()
                 val name = edNameRegister.text.toString()
                 val email = edEmailRegister.text.toString()
                 val password = edPasswordRegister.text.toString()
@@ -75,18 +75,14 @@ class RegisterActivity : AppCompatActivity() {
                     }
                     else -> {
 
-//                        val user = UserModel(
-//                            uId,
-//                            name,
-//                            email,
-//                            password
-//                        )
+
                         showLoading(true)
                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@RegisterActivity){
                             val mUser = Firebase.auth.currentUser
                             val uId = mAuth.currentUser?.uid.toString()
                             val user = UserModel(
                                 uId,
+                                photo,
                                 name,
                                 email,
                                 password
@@ -96,15 +92,15 @@ class RegisterActivity : AppCompatActivity() {
                                 val profileUpdates = userProfileChangeRequest{
                                     displayName = user.name
                                 }
-                                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ it ->
-                                    if (it.isSuccessful){
-                                        Log.d(ContentValues.TAG, "User profile updated.")
+                                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ task ->
+                                    if (task.isSuccessful){
+                                        Log.d(TAG, "User profile updated.")
                                         actionDatabase(user)
                                     }else{
-                                        Log.d(ContentValues.TAG, "User profile error:", it.exception)
+                                        Log.d(TAG, "User profile error:", it.exception)
                                     }
                                 }
-                                Log.d(ContentValues.TAG, getString(R.string.success_register))
+                                Log.d(TAG, getString(R.string.success_register))
                                 AlertDialog.Builder(this@RegisterActivity).apply {
                                     setTitle(getString(R.string.success))
                                     setMessage(getString(R.string.success_register))
@@ -118,7 +114,7 @@ class RegisterActivity : AppCompatActivity() {
                                 }
                             }else {
                                 showLoading(false)
-                                Log.d(ContentValues.TAG, getString(R.string.failed_register), it.exception)
+                                Log.d(TAG, getString(R.string.failed_register), it.exception)
                                 AlertDialog.Builder(this@RegisterActivity).apply {
                                     setTitle(getString(R.string.failed))
                                     setMessage(getString(R.string.email_is_used))
@@ -132,19 +128,6 @@ class RegisterActivity : AppCompatActivity() {
                                 binding.edEmailRegister.setText("")
                             }
                         }
-
-//                        database = FirebaseDatabase.getInstance().getReference("Users")
-//                        database.child(name).setValue(user)
-//                            .addOnCompleteListener(this@RegisterActivity){
-//                                showLoading(true)
-//                                if (it.isSuccessful) {
-//                                    showLoading(false)
-//                                    actionAuth(user)
-//                                }else {
-//                                    showLoading(false)
-//                                    Log.w(ContentValues.TAG, "failure", it.exception)
-//                                }
-//                            }
                     }
                 }
             }
@@ -154,64 +137,18 @@ class RegisterActivity : AppCompatActivity() {
     private fun actionDatabase(user: UserModel) {
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.child(user.uId).setValue(user)
-            .addOnCompleteListener(this@RegisterActivity){
+            .addOnCompleteListener(this@RegisterActivity){ task ->
                 showLoading(true)
-                if (it.isSuccessful) {
+                if (task.isSuccessful) {
                     showLoading(false)
-                    Log.w(ContentValues.TAG, "success")
+                    Log.w(TAG, "success")
                 }else {
                     showLoading(false)
-                    Log.w(ContentValues.TAG, "failure", it.exception)
+                    Log.w(TAG, "failure", task.exception)
                 }
             }
 
     }
-
-//    private fun actionAuth(user: UserModel) {
-//        showLoading(true)
-//        mAuth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener(this@RegisterActivity){
-//            val mUser = Firebase.auth.currentUser
-//            if(it.isSuccessful) {
-//                showLoading(false)
-//                val profileUpdates = userProfileChangeRequest{
-//                    displayName = user.name
-//                }
-//                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ it ->
-//                    if (it.isSuccessful){
-//                        Log.d(ContentValues.TAG, "User profile updated.")
-//                    }else{
-//                        Log.d(ContentValues.TAG, "User profile error:", it.exception)
-//                    }
-//                }
-//                Log.d(ContentValues.TAG, getString(R.string.success_register))
-//                AlertDialog.Builder(this@RegisterActivity).apply {
-//                    setTitle(getString(R.string.success))
-//                    setMessage(getString(R.string.success_register))
-//                    setPositiveButton(getString(R.string.cont)){ _, _ ->
-//                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-//                        startActivity(intent)
-//                        finish()
-//                    }
-//                    create()
-//                    show()
-//                }
-//            }else {
-//                showLoading(false)
-//                Log.d(ContentValues.TAG, getString(R.string.failed_register), it.exception)
-//                AlertDialog.Builder(this@RegisterActivity).apply {
-//                    setTitle(getString(R.string.failed))
-//                    setMessage(getString(R.string.email_is_used))
-//                    setPositiveButton(getString(R.string.cont)){ _, _ ->
-//                        show().dismiss()
-//                    }
-//                    create()
-//                    show()
-//                }
-//                binding.edEmailRegister.error = getString(R.string.email_is_used)
-//                binding.edEmailRegister.setText("")
-//            }
-//        }
-//    }
 
     private fun isEmailValid(email: String): Boolean {
         val expression = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
@@ -222,5 +159,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean){
         binding.pbRegister.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    companion object{
+        private const val TAG = "RegisterActivity"
     }
 }
