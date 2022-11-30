@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class UserEntity](
+data class UserEntity(
     @PrimaryKey
     val uId: String,
     val photoUrl: String? = null,
