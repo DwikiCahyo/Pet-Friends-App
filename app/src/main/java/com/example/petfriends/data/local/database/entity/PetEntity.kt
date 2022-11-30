@@ -14,10 +14,10 @@ data class Pet(
     val petPhotoUrl: String,
     val petName: String,
     val petAge: Int,
-    val petDate: DateFormat,
+//    val petDate: DateFormat? = null,
     val petJenis: String,
     val petGender: String,
-    val createdAt: DateFormat
+//    val createdAt: DateFormat? = null
 )
 
 @Entity
@@ -29,7 +29,7 @@ data class PetFood(
     val petFoodName: String,
     val petFoodKind: String,
     val petFoodWeight: Long,
-    val createdAt: DateFormat
+//    val createdAt: DateFormat? = null
 )
 
 @Entity
@@ -40,8 +40,8 @@ data class PetMedicine(
     val uId: String,
     val petMedicineName: String,
     val petMedicineKind: String,
-    val petMedicineDate: DateFormat,
-    val createdAt: DateFormat
+//    val petMedicineDate: DateFormat? = null,
+//    val createdAt: DateFormat? = null
 )
 
 @Entity
@@ -52,8 +52,8 @@ data class PetVaccine(
     val uId: String,
     val petVaccineName: String,
     val petVaccineKind: String,
-    val petVaccineDate: DateFormat,
-    val createdAt: DateFormat
+//    val petVaccineDate: DateFormat? = null,
+//    val createdAt: DateFormat? = null
 )
 
 @Entity
@@ -63,8 +63,8 @@ data class PetShower(
     val petId: String,
     val uId: String,
     val petShampooName: String,
-    val petShowerDate: DateFormat,
-    val createdAt: DateFormat
+//    val petShowerDate: DateFormat,
+//    val createdAt: DateFormat
 )
 
 data class UserAndPet(
