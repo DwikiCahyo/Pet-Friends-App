@@ -81,9 +81,8 @@ class RegisterActivity : AppCompatActivity() {
 //                            email,
 //                            password
 //                        )
-
+                        showLoading(true)
                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@RegisterActivity){
-                            showLoading(true)
                             val mUser = Firebase.auth.currentUser
                             val uId = mAuth.currentUser?.uid.toString()
                             val user = UserModel(
