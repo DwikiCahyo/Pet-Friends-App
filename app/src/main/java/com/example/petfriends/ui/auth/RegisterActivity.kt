@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupRegister() {
         binding.apply {
             btnRegister.setOnClickListener {
-//                val uId = tvUidRegister.text.toString()
+                val photo = tvUidRegister.text.toString()
                 val name = edNameRegister.text.toString()
                 val email = edEmailRegister.text.toString()
                 val password = edPasswordRegister.text.toString()
@@ -88,6 +88,7 @@ class RegisterActivity : AppCompatActivity() {
                             val uId = mAuth.currentUser?.uid.toString()
                             val user = UserModel(
                                 uId,
+                                photo,
                                 name,
                                 email,
                                 password
@@ -97,8 +98,8 @@ class RegisterActivity : AppCompatActivity() {
                                 val profileUpdates = userProfileChangeRequest{
                                     displayName = user.name
                                 }
-                                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ it ->
-                                    if (it.isSuccessful){
+                                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ task ->
+                                    if (task.isSuccessful){
                                         Log.d(ContentValues.TAG, "User profile updated.")
                                         actionDatabase(user)
                                     }else{
@@ -155,14 +156,14 @@ class RegisterActivity : AppCompatActivity() {
     private fun actionDatabase(user: UserModel) {
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.child(user.uId).setValue(user)
-            .addOnCompleteListener(this@RegisterActivity){
+            .addOnCompleteListener(this@RegisterActivity){ task ->
                 showLoading(true)
-                if (it.isSuccessful) {
+                if (task.isSuccessful) {
                     showLoading(false)
                     Log.w(ContentValues.TAG, "success")
                 }else {
                     showLoading(false)
-                    Log.w(ContentValues.TAG, "failure", it.exception)
+                    Log.w(ContentValues.TAG, "failure", task.exception)
                 }
             }
 

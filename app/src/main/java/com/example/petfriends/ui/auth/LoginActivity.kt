@@ -112,28 +112,32 @@ class LoginActivity : AppCompatActivity() {
     private fun setupLogin() {
         binding.apply {
             btnLogin.setOnClickListener {
+                showLoading(true)
                 val email = edEmailLogin.text.toString()
                 val password = edPasswordLogin.text.toString()
                 when{
                     email.isEmpty() -> {
+                        showLoading(false)
                         edEmailLogin.error = getString(R.string.enter_email)
                         edEmailLogin.requestFocus()
                     }
                     password.isEmpty() -> {
+                        showLoading(false)
                         edPasswordLogin.error = getString(R.string.enter_password)
                         edPasswordLogin.requestFocus()
                     }
                     password.length < 6 -> {
+                        showLoading(false)
                         edPasswordLogin.error = getString(R.string.length_password)
                         edPasswordLogin.requestFocus()
                     }
                     !isEmailValid(email) -> {
+                        showLoading(false)
                         edEmailLogin.error = getString(R.string.email_invalid)
                         edEmailLogin.requestFocus()
                     }
                     else -> {
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
-                            showLoading(true)
                             if (it.isSuccessful){
                                 showLoading(false)
                                 Log.d(ContentValues.TAG, getString(R.string.success_sign_in))
