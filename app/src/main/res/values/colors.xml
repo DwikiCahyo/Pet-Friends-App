@@ -4,11 +4,13 @@
     <color name="blue">#1194AA</color>
     <color name="blue_light">#FFBB86FC</color>
     <color name="blue_dark">#FF6200EE</color>
+    <color name="sky_blue">#48CAE4</color>
 
     <!--Gray-->
     <color name="gray">#607D8B</color>
     <color name="gray_light">#B0BEC5</color>
     <color name="gray_dark">#455A64</color>
+
 
 
     <color name="purple_700">#FF3700B3</color>
