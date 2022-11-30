@@ -141,7 +141,7 @@ class LoginActivity : AppCompatActivity() {
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
                             if (it.isSuccessful){
                                 showLoading(false)
-                                Log.d(ContentValues.TAG, getString(R.string.success_sign_in))
+                                Log.d(TAG, getString(R.string.success_sign_in))
 
                                 AlertDialog.Builder(this@LoginActivity).apply {
                                     setTitle(getString(R.string.success))
@@ -157,7 +157,7 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(this@LoginActivity, getString(R.string.success_sign_in), Toast.LENGTH_SHORT).show()
                             }else{
                                 showLoading(false)
-                                Log.e(ContentValues.TAG, getString(R.string.failed_sign_in), it.exception)
+                                Log.e(TAG, getString(R.string.failed_sign_in), it.exception)
                                 AlertDialog.Builder(this@LoginActivity).apply {
                                     setTitle(getString(R.string.failed))
                                     setMessage(getString(R.string.wrong_password))
@@ -190,7 +190,7 @@ class LoginActivity : AppCompatActivity() {
         updateUI(currentUser)
     }
 
-   fun showLoading(isLoading: Boolean){
+   private fun showLoading(isLoading: Boolean){
         binding.pbLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
