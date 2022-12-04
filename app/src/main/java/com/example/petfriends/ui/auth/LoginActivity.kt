@@ -5,6 +5,8 @@ import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -68,6 +70,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+
+
+
+
     private var resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -115,64 +122,59 @@ class LoginActivity : AppCompatActivity() {
                 showLoading(true)
                 val email = edEmailLogin.text.toString()
                 val password = edPasswordLogin.text.toString()
-                when{
-                    email.isEmpty() -> {
-                        showLoading(false)
-                        edEmailLogin.error = getString(R.string.enter_email)
-                        edEmailLogin.requestFocus()
-                    }
-                    password.isEmpty() -> {
-                        showLoading(false)
-                        edPasswordLogin.error = getString(R.string.enter_password)
-                        edPasswordLogin.requestFocus()
-                    }
-                    password.length < 6 -> {
-                        showLoading(false)
-                        edPasswordLogin.error = getString(R.string.length_password)
-                        edPasswordLogin.requestFocus()
-                    }
-                    !isEmailValid(email) -> {
-                        showLoading(false)
-                        edEmailLogin.error = getString(R.string.email_invalid)
-                        edEmailLogin.requestFocus()
-                    }
-                    else -> {
-                        showLoading(true)
-                        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
-                            if (it.isSuccessful){
-                                showLoading(false)
-                                Log.d(TAG, getString(R.string.success_sign_in))
+                if ( password.isEmpty() && !isEmailValid(email)){
+                    showLoading(false)
+                    errPass.visibility = View.VISIBLE
+                    errEmail.visibility = View.VISIBLE
+                } else{
+                    when{
+                        password.isEmpty() -> {
+                            showLoading(false)
+                            errPass.visibility = View.VISIBLE
+                            edPasswordLogin.requestFocus()
+                        }
+                        !isEmailValid(email) -> {
+                            showLoading(false)
+                            errEmail.visibility = View.VISIBLE
+                            edEmailLogin.requestFocus()
+                        }
+                        else -> {
+                            showLoading(true)
+                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){
+                                if (it.isSuccessful){
+                                    showLoading(false)
+                                    Log.d(TAG, getString(R.string.success_sign_in))
 
-                                AlertDialog.Builder(this@LoginActivity).apply {
-                                    setTitle(getString(R.string.success))
-                                    setMessage(getString(R.string.success_sign_in))
-                                    setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                                    AlertDialog.Builder(this@LoginActivity).apply {
+                                        setTitle(getString(R.string.success))
+                                        setMessage(getString(R.string.success_sign_in))
+                                        setPositiveButton(getString(R.string.cont)){ _, _ ->
+                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                        create()
+                                        show()
                                     }
-                                    create()
-                                    show()
-                                }
-                                Toast.makeText(this@LoginActivity, getString(R.string.success_sign_in), Toast.LENGTH_SHORT).show()
-                            }else{
-                                showLoading(false)
-                                Log.e(TAG, getString(R.string.failed_sign_in), it.exception)
-                                AlertDialog.Builder(this@LoginActivity).apply {
-                                    setTitle(getString(R.string.failed))
-                                    setMessage(getString(R.string.wrong_password))
-                                    setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                        show().dismiss()
+                                    Toast.makeText(this@LoginActivity, getString(R.string.success_sign_in), Toast.LENGTH_SHORT).show()
+                                }else{
+                                    showLoading(false)
+                                    Log.e(TAG, getString(R.string.failed_sign_in), it.exception)
+                                    AlertDialog.Builder(this@LoginActivity).apply {
+                                        setTitle(getString(R.string.failed))
+                                        setMessage(getString(R.string.wrong_password))
+                                        setPositiveButton(getString(R.string.cont)){ _, _ ->
+                                            show().dismiss()
+                                        }
+                                        create()
+                                        show()
                                     }
-                                    create()
-                                    show()
+                                    Toast.makeText(this@LoginActivity, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
                                 }
-                                Toast.makeText(this@LoginActivity, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
                 }
-
             }
         }
     }

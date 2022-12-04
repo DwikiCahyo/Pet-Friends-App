@@ -48,13 +48,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <com.example.petfriends.ui.custom.CustomEditEmail
             android:id="@+id/ed_email_login"
             android:layout_width="300dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/custom_edittext"
-            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
@@ -65,6 +63,18 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
             tools:ignore="autoFill" />
 
+        <TextView
+            android:id="@+id/err_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="10sp"
+            android:text="@string/email_invalid"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_email_login"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/tv_password"
@@ -80,23 +90,34 @@
             app:layout_constraintTop_toBottomOf="@+id/ed_email_login" />
 
 
-        <EditText
+        <com.example.petfriends.ui.custom.CustomEditPassword
             android:id="@+id/ed_password_login"
             android:layout_width="300dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/custom_edittext"
-            android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="?android:textColorPrimary"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_password"
             app:passwordToggleEnabled="true"
             tools:ignore="autoFill" />
+
+        <TextView
+            android:id="@+id/err_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="10sp"
+            android:text="@string/password"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_password_login"
+            tools:visibility="visible" />
+
 
         <!--        <com.google.android.material.textfield.TextInputLayout-->
         <!--            android:id="@+id/input_layout_password"-->
