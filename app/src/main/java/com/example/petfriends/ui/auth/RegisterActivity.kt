@@ -11,7 +11,6 @@ import com.example.petfriends.R
 import com.example.petfriends.data.local.model.UserModel
 import com.example.petfriends.databinding.ActivityRegisterBinding
 import com.example.petfriends.ui.MainActivity
-import com.example.petfriends.ui.add_data.add_pet.MainAddPetActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -106,8 +105,7 @@ class RegisterActivity : AppCompatActivity() {
                                     setTitle(getString(R.string.success))
                                     setMessage(getString(R.string.success_register))
                                     setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                        val intent = Intent(this@RegisterActivity, MainAddPetActivity::class.java)
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
                                         startActivity(intent)
                                         finish()
                                     }
