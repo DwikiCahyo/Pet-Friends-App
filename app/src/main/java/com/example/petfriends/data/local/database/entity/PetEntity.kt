@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
-import java.text.DateFormat
+import java.util.*
 
 @Entity
 data class Pet(
@@ -14,10 +14,11 @@ data class Pet(
     val petPhotoUrl: String,
     val petName: String,
     val petAge: Int,
-    val petDate: DateFormat,
     val petJenis: String,
     val petGender: String,
-    val createdAt: DateFormat
+//    val petBirthday: Date?,
+//    val petAdoptionDate: Date?,
+//    val createdAt: Date?
 )
 
 @Entity
@@ -29,7 +30,8 @@ data class PetFood(
     val petFoodName: String,
     val petFoodKind: String,
     val petFoodWeight: Long,
-    val createdAt: DateFormat
+    val petFoodDate: Date?,
+    val createdAt: Date?
 )
 
 @Entity
@@ -40,8 +42,8 @@ data class PetMedicine(
     val uId: String,
     val petMedicineName: String,
     val petMedicineKind: String,
-    val petMedicineDate: DateFormat,
-    val createdAt: DateFormat
+    val petMedicineDate: Date?,
+    val createdAt: Date?
 )
 
 @Entity
@@ -52,8 +54,8 @@ data class PetVaccine(
     val uId: String,
     val petVaccineName: String,
     val petVaccineKind: String,
-    val petVaccineDate: DateFormat,
-    val createdAt: DateFormat
+    val petVaccineDate: Date?,
+    val createdAt: Date?
 )
 
 @Entity
@@ -63,8 +65,8 @@ data class PetShower(
     val petId: String,
     val uId: String,
     val petShampooName: String,
-    val petShowerDate: DateFormat,
-    val createdAt: DateFormat
+    val petShowerDate: Date?,
+    val createdAt: Date?
 )
 
 data class UserAndPet(
@@ -76,7 +78,7 @@ data class UserAndPet(
     val pet: Pet
 )
 
-data class PetAndFood(
+data class PetAndFoods(
     @Embedded val pet: Pet,
     @Relation(
         parentColumn = "petId",
