@@ -11,7 +11,7 @@
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:text="@string/register"
         android:textSize="24sp"
@@ -46,17 +46,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <EditText
+        <com.example.petfriends.ui.custom.CustomeEditName
             android:id="@+id/ed_name_register"
             android:layout_width="300dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/custom_edittext"
-            android:hint="@string/name"
-            android:inputType="textEmailAddress"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="?android:textColorPrimary"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,22 +73,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_name_register"/>
 
-        <EditText
+        <com.example.petfriends.ui.custom.CustomEditEmail
             android:id="@+id/ed_email_register"
             android:layout_width="300dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/custom_edittext"
-            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="?android:textColorPrimary"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
             tools:ignore="autoFill" />
+
+        <TextView
+            android:id="@+id/err_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="10sp"
+            android:text="@string/email_invalid"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_email_register"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/tv_password"
@@ -107,22 +113,61 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_email_register"/>
 
-        <EditText
-            android:id="@+id/ed_password_register"
+        <com.example.petfriends.ui.custom.CustomEditPassword
+            android:id="@+id/ed_password_register1"
             android:layout_width="300dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/custom_edittext"
-            android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="?android:textColorPrimary"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_password"
             tools:ignore="autoFill" />
+
+        <TextView
+            android:id="@+id/tv_retype_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/retype_password"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_password_register1"/>
+
+
+        <com.example.petfriends.ui.custom.CustomEditPassword
+            android:id="@+id/ed_password_register2"
+            android:layout_width="300dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_retype_password"
+            tools:ignore="autoFill" />
+
+
+        <TextView
+            android:id="@+id/err_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="10sp"
+            android:text="@string/password"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_password_register2"
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"
@@ -133,7 +178,7 @@
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ed_password_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/ed_password_register2"/>
 
         <LinearLayout
             android:layout_width="300dp"
