@@ -1,6 +1,5 @@
 package com.example.petfriends.ui.auth
 
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -46,91 +45,100 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setupRegister() {
         binding.apply {
-            btnRegister.setOnClickListener {
-                val photo = tvUidRegister.text.toString()
-                val name = edNameRegister.text.toString()
-                val email = edEmailRegister.text.toString()
-                val password = edPasswordRegister.text.toString()
+                btnRegister.setOnClickListener {
+                    val photo = tvUidRegister.text.toString()
+                    val name = edNameRegister.text.toString()
+                    val email = edEmailRegister.text.toString()
+                    val password = edPasswordRegister1.text.toString()
+                    val password2 = edPasswordRegister2.text.toString()
 
-                when{
-                    name.isEmpty() -> {
-                        edNameRegister.error = getString(R.string.enter_name)
-                        edNameRegister.requestFocus()
-                    }
-                    email.isEmpty() -> {
-                        edEmailRegister.error = getString(R.string.enter_email)
-                        edEmailRegister.requestFocus()
-                    }
-                    password.isEmpty() -> {
-                        edPasswordRegister.error = getString(R.string.enter_password)
-                        edPasswordRegister.requestFocus()
-                    }
-                    password.length < 6 -> {
-                        edPasswordRegister.error = getString(R.string.length_password)
-                        edPasswordRegister.requestFocus()
-                    }
-                    !isEmailValid(email) -> {
-                        edEmailRegister.error = getString(R.string.email_invalid)
-                        edEmailRegister.requestFocus()
-                    }
-                    else -> {
-
-
-                        showLoading(true)
-                        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@RegisterActivity){
-                            val mUser = Firebase.auth.currentUser
-                            val uId = mAuth.currentUser?.uid.toString()
-                            val user = UserModel(
-                                uId,
-                                photo,
-                                name,
-                                email,
-                                password
-                            )
-                            if(it.isSuccessful) {
-                                showLoading(false)
-                                val profileUpdates = userProfileChangeRequest{
-                                    displayName = user.name
-                                }
-                                mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ task ->
-                                    if (task.isSuccessful){
-                                        Log.d(TAG, "User profile updated.")
-                                        actionDatabase(user)
-                                    }else{
-                                        Log.d(TAG, "User profile error:", it.exception)
-                                    }
-                                }
-                                Log.d(TAG, getString(R.string.success_register))
-                                AlertDialog.Builder(this@RegisterActivity).apply {
-                                    setTitle(getString(R.string.success))
-                                    setMessage(getString(R.string.success_register))
-                                    setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
-                                    }
-                                    create()
-                                    show()
-                                }
-                            }else {
-                                showLoading(false)
-                                Log.d(TAG, getString(R.string.failed_register), it.exception)
-                                AlertDialog.Builder(this@RegisterActivity).apply {
-                                    setTitle(getString(R.string.failed))
-                                    setMessage(getString(R.string.email_is_used))
-                                    setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                        show().dismiss()
-                                    }
-                                    create()
-                                    show()
-                                }
-                                binding.edEmailRegister.error = getString(R.string.email_is_used)
-                                binding.edEmailRegister.setText("")
-                            }
+                    when{
+                        name.isEmpty() -> {
+                            edNameRegister.error = getString(R.string.enter_name)
+                            edNameRegister.requestFocus()
                         }
+                        email.isEmpty() -> {
+                            edEmailRegister.error = getString(R.string.enter_email)
+                            edEmailRegister.requestFocus()
+                        }
+                        password.isEmpty() -> {
+                            errEmail.visibility = View.VISIBLE
+                            edPasswordRegister1.error = getString(R.string.enter_password)
+                            edPasswordRegister1.requestFocus()
+                        }
+                        password.length < 6 -> {
+                            edPasswordRegister1.error = getString(R.string.length_password)
+                            edPasswordRegister1.requestFocus()
+                        }
+                        !isEmailValid(email) -> {
+                            errEmail.visibility = View.VISIBLE
+                            edEmailRegister.requestFocus()
+                        } (password != password2) -> {
+                            AlertDialog.Builder(this@RegisterActivity).apply {
+                                setTitle("Password")
+                                setMessage("Password is not match")
+                                setPositiveButton("Back"){ dialog, _ ->
+                                    dialog.dismiss()
+                                }
+                                create()
+                                show()
+                        }
+                        }else -> {
+                                showLoading(true)
+                                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@RegisterActivity){
+                                    val mUser = Firebase.auth.currentUser
+                                    val uId = mAuth.currentUser?.uid.toString()
+                                    val user = UserModel(
+                                        uId,
+                                        photo,
+                                        name,
+                                        email,
+                                        password
+                                    )
+                                    if(it.isSuccessful) {
+                                        showLoading(false)
+                                        val profileUpdates = userProfileChangeRequest{
+                                            displayName = user.name
+                                        }
+                                        mUser!!.updateProfile(profileUpdates).addOnCompleteListener(this@RegisterActivity){ task ->
+                                            if (task.isSuccessful){
+                                                Log.d(TAG, "User profile updated.")
+                                                actionDatabase(user)
+                                            }else{
+                                                Log.d(TAG, "User profile error:", it.exception)
+                                            }
+                                        }
+                                        Log.d(TAG, getString(R.string.success_register))
+                                        AlertDialog.Builder(this@RegisterActivity).apply {
+                                            setTitle(getString(R.string.success))
+                                            setMessage(getString(R.string.success_register))
+                                            setPositiveButton(getString(R.string.cont)){ _, _ ->
+                                                val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                                                startActivity(intent)
+                                                finish()
+                                            }
+                                            create()
+                                            show()
+                                        }
+                                    }else {
+                                        showLoading(false)
+                                        Log.d(TAG, getString(R.string.failed_register), it.exception)
+                                        AlertDialog.Builder(this@RegisterActivity).apply {
+                                            setTitle(getString(R.string.failed))
+                                            setMessage(getString(R.string.email_is_used))
+                                            setPositiveButton(getString(R.string.cont)){ _, _ ->
+                                                show().dismiss()
+                                            }
+                                            create()
+                                            show()
+                                        }
+                                        binding.edEmailRegister.error = getString(R.string.email_is_used)
+                                        binding.edEmailRegister.setText("")
+                                    }
+                                }
+                            }
                     }
                 }
-            }
         }
     }
 
