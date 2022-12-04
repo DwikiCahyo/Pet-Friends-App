@@ -29,6 +29,7 @@ class CustomEditEmail:AppCompatEditText, View.OnTouchListener {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        setBackgroundResource(R.drawable.border_edit_text)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
         setHint(context.getString(R.string.hint_edt))
         hintColor?.let { setHintTextColor(it) }
@@ -69,19 +70,24 @@ class CustomEditEmail:AppCompatEditText, View.OnTouchListener {
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 // Do nothing.
+                checkTextEmail(s)
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty()) {
-                    showClearButton()
-                } else
-                    hideClearButton()
+                checkTextEmail(s)
             }
 
             override fun afterTextChanged(s: Editable) {
-                if(s.toString().isEmpty()) error = "Email cant empty"
+                if(s.toString().isEmpty()) error = "Email cant empty" else checkTextEmail(s)
             }
         })
+    }
+
+    private fun checkTextEmail(s: CharSequence) {
+        if (s.toString().isNotEmpty()) {
+            showClearButton()
+        } else
+            hideClearButton()
     }
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
