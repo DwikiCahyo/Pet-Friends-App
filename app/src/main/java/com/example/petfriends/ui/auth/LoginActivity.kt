@@ -1,12 +1,9 @@
 package com.example.petfriends.ui.auth
 
 import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.petfriends.R
 import com.example.petfriends.databinding.ActivityLoginBinding
 import com.example.petfriends.ui.MainActivity
+import com.example.petfriends.ui.add_data.add_pet.MainAddPetActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -71,10 +69,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
     private var resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -111,7 +105,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null){
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
             finish()
         }
     }
@@ -149,7 +145,8 @@ class LoginActivity : AppCompatActivity() {
                                         setTitle(getString(R.string.success))
                                         setMessage(getString(R.string.success_sign_in))
                                         setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            val intent = Intent(this@LoginActivity, MainAddPetActivity::class.java)
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                             startActivity(intent)
                                             finish()
                                         }

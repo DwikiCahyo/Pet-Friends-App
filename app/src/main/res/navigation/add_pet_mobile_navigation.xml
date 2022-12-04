@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_pet_mobile_navigation"
+    app:startDestination="@id/firstAddPetFragment">
+
+    <fragment
+        android:id="@+id/firstAddPetFragment"
+        android:name="com.example.petfriends.ui.add_data.add_pet.FirstAddPetFragment"
+        android:label="fragment_first_add_pet"
+        tools:layout="@layout/fragment_first_add_pet" >
+        <action
+            android:id="@+id/action_firstAddPetFragment_to_secondAddPetFragment"
+            app:destination="@id/secondAddPetFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/secondAddPetFragment"
+        android:name="com.example.petfriends.ui.add_data.add_pet.SecondAddPetFragment"
+        android:label="fragment_second_add_pet"
+        tools:layout="@layout/fragment_second_add_pet" />
+</navigation>
