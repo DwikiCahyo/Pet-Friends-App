@@ -23,11 +23,13 @@
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/activity_login.xml" value="0.11" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/activity_register.xml" value="0.16" />
+        <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_add_pet.xml" value="0.2" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_bookmark.xml" value="0.1" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_discovery.xml" value="0.1" />
-        <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_home2.xml" value="0.1" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/fragment_profile.xml" value="0.16032608695652173" />
+        <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/layout/item_row_pet.xml" value="0.12" />
         <entry key="..\:/Dicoding/project/PetFriends/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>

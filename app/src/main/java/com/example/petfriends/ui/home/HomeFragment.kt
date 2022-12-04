@@ -34,27 +34,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mAuth = Firebase.auth
 
-        binding.btnLogout.setOnClickListener {
-            Toast.makeText(context, getString(R.string.success_logout), Toast.LENGTH_SHORT).show()
-            mAuth.signOut()
-            startActivity(Intent(context, LoginActivity::class.java))
-        }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = mAuth.currentUser
-        binding.tvName.text = currentUser?.displayName
-        updateUI(currentUser)
-    }
-
-    private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser == null){
-            startActivity(Intent(context, LoginActivity::class.java))
-        }
     }
 
     override fun onDestroy() {
