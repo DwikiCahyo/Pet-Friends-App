@@ -5,9 +5,9 @@
         android:icon="@drawable/icon_home"
         android:title="Home"/>
 
-    <item android:id="@+id/navigation_discovery"
+    <item android:id="@+id/navigation_category"
         android:icon="@drawable/icon_discovery"
-        android:title="Discovery"/>
+        android:title="Category"/>
 
     <item android:id="@+id/navigation_bookmark"
         android:icon="@drawable/icon_bookmark"

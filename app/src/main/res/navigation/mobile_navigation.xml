@@ -12,10 +12,14 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
-        android:id="@+id/navigation_discovery"
-        android:name="com.example.petfriends.ui.discovery.DiscoveryFragment"
-        android:label="@string/discovery"
-        tools:layout="@layout/fragment_discovery" />
+        android:id="@+id/navigation_category"
+        android:name="com.example.petfriends.ui.category.CategoryFragment"
+        android:label="@string/category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_navigation_category_to_addFoodActivity"
+            app:destination="@id/addFoodActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_bookmark"
@@ -27,6 +31,12 @@
         android:name="com.example.petfriends.ui.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
+
+    <activity
+        android:id="@+id/addFoodActivity"
+        android:name="com.example.petfriends.ui.add_data.add_food.AddFoodActivity"
+        android:label="activity_add_food"
+        tools:layout="@layout/activity_add_food"/>
 
 
 </navigation>

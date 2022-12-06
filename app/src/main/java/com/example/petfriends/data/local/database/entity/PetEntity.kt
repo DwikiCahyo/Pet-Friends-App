@@ -16,9 +16,8 @@ data class Pet(
     val petAge: Int,
     val petJenis: String,
     val petGender: String,
-//    val petBirthday: Date?,
-//    val petAdoptionDate: Date?,
-//    val createdAt: Date?
+    val petBirthday: String,
+    val createdAt: String
 )
 
 @Entity
@@ -30,8 +29,8 @@ data class PetFood(
     val petFoodName: String,
     val petFoodKind: String,
     val petFoodWeight: Long,
-    val petFoodDate: Date?,
-    val createdAt: Date?
+    val petFoodDate: String,
+    val createdAt: String
 )
 
 @Entity
