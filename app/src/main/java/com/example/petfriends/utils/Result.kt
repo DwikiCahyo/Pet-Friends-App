@@ -1,4 +1,4 @@
-package com.example.petfriends.data.utils
+package com.example.petfriends.utils
 
 sealed class Result<out R> private constructor() {
     data class Success<out T>(val data: T) : Result<T>()

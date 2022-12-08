@@ -1,4 +1,4 @@
-package com.example.petfriends.data.utils
+package com.example.petfriends.utils
 
 import androidx.room.TypeConverter
 import java.util.*

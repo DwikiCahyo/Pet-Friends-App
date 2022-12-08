@@ -34,10 +34,6 @@ class FirstAddPetFragment : Fragment(){
         _binding = FragmentFirstAddPetBinding.inflate(inflater, container, false)
         val view: View = binding.root
         return view
-
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,9 +56,9 @@ class FirstAddPetFragment : Fragment(){
         }
 
         binding.btnSelectDog.setOnClickListener{
-                val petDog = "Dog"
-                selectPet(petDog)
-                Navigation.createNavigateOnClickListener(R.id.action_firstAddPetFragment_to_secondAddPetFragment)
+            val petDog = "Dog"
+            selectPet(petDog)
+            Navigation.createNavigateOnClickListener(R.id.action_firstAddPetFragment_to_secondAddPetFragment)
         }
 
 
