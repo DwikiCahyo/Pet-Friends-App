@@ -43,14 +43,18 @@
     <string name="error_password">Error Password</string>
     <string name="password_not_same">Password is not same</string>
     <string name="back">Back</string>
-    
-<!--    Pet Food -->
+
+    <!--    Pet Food -->
     <string name="kind">Kind</string>
     <string name="weight">Weight</string>
     <string name="date">Date</string>
+    <string name="food_amount">Enter amount</string>
+    <string name="next">Next</string>
 
     <string name="add">Add</string>
 
     <string name="name_string" formatted="true">"Welcome %s ,What Type is Your Pet?"</string>
     <string name="select">Select</string>
+
+    <string name="day">Tuesday</string>
 </resources>

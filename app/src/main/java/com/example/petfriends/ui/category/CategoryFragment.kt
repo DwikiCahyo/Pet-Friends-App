@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.petfriends.R
 import com.example.petfriends.databinding.FragmentCategoryBinding
@@ -25,9 +26,9 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnAddFood.setOnClickListener {
-           view.findNavController().navigate(R.id.action_navigation_category_to_addFoodActivity)
-        }
+        binding.btnAddFood.setOnClickListener (
+           Navigation.createNavigateOnClickListener(R.id.action_navigation_category_to_addFoodFragment)
+        )
     }
 
     override fun onDestroyView() {
