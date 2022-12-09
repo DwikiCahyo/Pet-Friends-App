@@ -53,6 +53,8 @@
     <string name="next">Next</string>
     <string name="error_food_name">Food name can not be empty!</string>
     <string name="error_weight">Food weight can not be empty!</string>
+    <string name="success_add_food">Success add food!</string>
+    <string name="failed_add_food">Failed add food!</string>
 
     <string name="add">Add</string>
 

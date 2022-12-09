@@ -1,5 +1,7 @@
 package com.example.petfriends.ui.add_data.add_food
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +12,8 @@ import android.widget.Toast
 import com.example.petfriends.R
 import com.example.petfriends.data.local.model.PetFood
 import com.example.petfriends.databinding.FragmentAddFoodBinding
+import com.example.petfriends.ui.MainActivity
+import com.example.petfriends.ui.category.CategoryFragment
 import com.example.petfriends.utils.DateHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -37,27 +41,8 @@ class AddFoodFragment : Fragment() {
 
         mAuth = Firebase.auth
 
-//        getPetId()
         addFood()
     }
-
-//    private fun getPetId() {
-//        val user = mAuth.currentUser
-//        database = FirebaseDatabase.getInstance().getReference("Pets")
-//        database.child(user?.uid.toString()).addValueEventListener(object: ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val petId = snapshot.child("petId")
-//                if (petId.exists()) {
-//                    addFood(petId)
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//    }
 
     private fun addFood() {
         binding.apply {
@@ -87,12 +72,32 @@ class AddFoodFragment : Fragment() {
                         database = FirebaseDatabase.getInstance().getReference("PetsFoods")
                         database.child(uId).push().setValue(petFood).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                                showLoading(false)
                                 Log.w(TAG, "success")
-                                Toast.makeText(context, getString(R.string.success), Toast.LENGTH_SHORT).show()
+                                AlertDialog.Builder(context).apply{
+                                    setTitle(getString(R.string.success))
+                                    setMessage(getString(R.string.success_add_food))
+                                    setPositiveButton(getString(R.string.cont)){_, _ ->
+                                        startActivity(Intent(context, MainActivity::class.java))
+                                    }
+                                    create()
+                                    show()
+                                }
+//                                Toast.makeText(context, getString(R.string.success), Toast.LENGTH_SHORT).show()
                             }
                             else {
+                                showLoading(false)
                                 Log.w(TAG, "failure", task.exception)
-                                Toast.makeText(context, getString(R.string.failed), Toast.LENGTH_SHORT).show()
+                                AlertDialog.Builder(context).apply{
+                                    setTitle(getString(R.string.failed))
+                                    setMessage(getString(R.string.success_add_food))
+                                    setPositiveButton(getString(R.string.cont)){_, _ ->
+                                        show().dismiss()
+                                    }
+                                    create()
+                                    show()
+                                }
+//                                Toast.makeText(context, getString(R.string.failed), Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -100,6 +105,11 @@ class AddFoodFragment : Fragment() {
             }
         }
     }
+
+    private fun showLoading(isLoading: Boolean){
+        binding.pbAddpetfood.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
 
 
     override fun onDestroyView() {
