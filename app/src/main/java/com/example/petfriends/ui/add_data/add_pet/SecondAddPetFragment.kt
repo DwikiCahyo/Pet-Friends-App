@@ -42,8 +42,8 @@ class SecondAddPetFragment : Fragment() {
 
         mAuth = Firebase.auth
 
-//        jenisPet = arguments?.getString(FirstAddPetFragment.EXTRA_PET).toString()
-        jenisPet = SecondAddPetFragmentArgs.fromBundle(arguments as Bundle).jenis
+        jenisPet = arguments?.getString(FirstAddPetFragment.TYPE_NAME).toString()
+
 
 
 

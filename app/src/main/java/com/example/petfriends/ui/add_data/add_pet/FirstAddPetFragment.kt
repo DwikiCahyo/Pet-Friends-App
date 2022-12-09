@@ -54,31 +54,39 @@ class FirstAddPetFragment : Fragment(){
             binding.edtWelcome.text = getString(R.string.name_string,name)
         }
 
-        binding.btnSelectCat.setOnClickListener{
-            val toSecondAddPetFragment = FirstAddPetFragmentDirections.actionFirstAddPetFragmentToSecondAddPetFragment()
-            toSecondAddPetFragment.jenis = "Cat"
-            view.findNavController().navigate(toSecondAddPetFragment)
-
+        binding.btnSelectDog.setOnClickListener {
+            binding.cvCat.visibility = View.GONE
+            binding.btnAddNext.visibility = View.VISIBLE
+            binding.btnSelectDog.visibility = View.GONE
+            selectDog()
         }
 
-        binding.btnSelectDog.setOnClickListener{
-            val toSecondAddPetFragment = FirstAddPetFragmentDirections.actionFirstAddPetFragmentToSecondAddPetFragment()
-            toSecondAddPetFragment.jenis = "Dog"
-            view.findNavController().navigate(toSecondAddPetFragment)
+        binding.btnSelectCat.setOnClickListener {
+            binding.cvDog.visibility = View.GONE
+            binding.btnAddNext.visibility = View.VISIBLE
+            binding.btnSelectCat.visibility = View.GONE
+            selectCat()
         }
-
-
 
     }
 
-//    private fun selectPet(pet:String) {
-//        val pref = PetPreferences(requireContext())
-//            val petModel = PetModel()
-//            petModel.typePet  = pet
-//            pref.setPet(petModel)
-//            Toast.makeText(requireContext(),"${petModel.typePet} select",Toast.LENGTH_SHORT).show()
-//
-//    }
+    private fun selectCat(){
+        binding.btnAddNext.setOnClickListener {
+            val mBundleCat = Bundle()
+            mBundleCat.putString(TYPE_NAME, "Cat")
+            it.findNavController()
+                .navigate(R.id.action_firstAddPetFragment_to_secondAddPetFragment, mBundleCat)
+        }
+    }
+
+    private fun selectDog() {
+        binding.btnAddNext.setOnClickListener {
+            val mBundleDog = Bundle()
+            mBundleDog.putString(TYPE_NAME, "Dog")
+            it.findNavController()
+                .navigate(R.id.action_firstAddPetFragment_to_secondAddPetFragment, mBundleDog)
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -86,6 +94,7 @@ class FirstAddPetFragment : Fragment(){
     }
 
     companion object {
+        const val TYPE_NAME = "type_name"
         private const val TAG = "FirstAddPetFragment"
     }
 }
