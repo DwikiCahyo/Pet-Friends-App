@@ -12,10 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.petfriends.R
+import com.example.petfriends.data.local.model.PetModel
+//import com.example.petfriends.data.local.model.PetModel
+//import com.example.petfriends.data.local.preference.PetPreferences
 import com.example.petfriends.databinding.FragmentFirstAddPetBinding
+import com.example.petfriends.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 
@@ -25,6 +30,8 @@ class FirstAddPetFragment : Fragment(){
     private val binding get() = _binding!!
     private lateinit var auth:FirebaseAuth
     private lateinit var database: DatabaseReference
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +70,15 @@ class FirstAddPetFragment : Fragment(){
 
 
     }
+
+//    private fun selectPet(pet:String) {
+//        val pref = PetPreferences(requireContext())
+//            val petModel = PetModel()
+//            petModel.typePet  = pet
+//            pref.setPet(petModel)
+//            Toast.makeText(requireContext(),"${petModel.typePet} select",Toast.LENGTH_SHORT).show()
+//
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

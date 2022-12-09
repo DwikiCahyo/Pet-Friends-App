@@ -78,6 +78,7 @@ class SecondAddPetFragment : Fragment() {
                     }
                     else -> {
                         val petModel = PetModel(
+                            petId,
                             uId,
                             petPhoto,
                             petName,
