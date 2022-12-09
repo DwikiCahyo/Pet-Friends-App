@@ -9,11 +9,21 @@
     <ImageView
         android:id="@+id/iv_change_hours"
         android:layout_width="20dp"
-        android:layout_height="22dp"
+        android:layout_height="18dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_edit"
         app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_change_date"
+        android:layout_width="20dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintEnd_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View

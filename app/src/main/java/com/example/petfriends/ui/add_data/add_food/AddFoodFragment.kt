@@ -8,12 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.petfriends.R
 import com.example.petfriends.data.local.model.PetFood
 import com.example.petfriends.databinding.FragmentAddFoodBinding
 import com.example.petfriends.ui.MainActivity
-import com.example.petfriends.ui.category.CategoryFragment
 import com.example.petfriends.utils.DateHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -39,13 +37,17 @@ class AddFoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showLoading(true)
+
         mAuth = Firebase.auth
 
         addFood()
     }
 
     private fun addFood() {
+        showLoading(false)
         binding.apply {
+            ivChangeHours.setOnClickListener { changeHours() }
             tvHours.text = DateHelper.getCurrentDate()
             btnFoodNext.setOnClickListener {
                 val urlPhoto = "asdasdasd"
@@ -53,7 +55,6 @@ class AddFoodFragment : Fragment() {
                 val foodWeight = edFoodWeight.text.toString()
                 val uId = mAuth.currentUser?.uid.toString()
                 val createdAt = DateHelper.getCurrentDate()
-
                 when {
                     foodName.isEmpty() -> {
                         edFoodName.error = getString(R.string.error_food_name)
@@ -83,7 +84,6 @@ class AddFoodFragment : Fragment() {
                                     create()
                                     show()
                                 }
-//                                Toast.makeText(context, getString(R.string.success), Toast.LENGTH_SHORT).show()
                             }
                             else {
                                 showLoading(false)
@@ -104,6 +104,10 @@ class AddFoodFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun changeHours() {
+
     }
 
     private fun showLoading(isLoading: Boolean){
