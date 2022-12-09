@@ -11,7 +11,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PetModel(
-    val petId: String,
     val uId: String,
     val petPhotoUrl: String,
     val petName: String,
@@ -26,6 +25,8 @@ data class PetModel(
 @Parcelize
 data class PetFood(
 //    var petFoodId: String,
+    val uId: String,
+//    val petId: String,
     var urlPhoto: String,
     var name: String,
     var weight: String,

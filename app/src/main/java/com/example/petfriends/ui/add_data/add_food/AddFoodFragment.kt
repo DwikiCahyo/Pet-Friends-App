@@ -13,8 +13,7 @@ import com.example.petfriends.databinding.FragmentAddFoodBinding
 import com.example.petfriends.utils.DateHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
 class AddFoodFragment : Fragment() {
@@ -38,14 +37,32 @@ class AddFoodFragment : Fragment() {
 
         mAuth = Firebase.auth
 
-        addAction()
+//        getPetId()
+        addFood()
     }
 
-    private fun addAction() {
+//    private fun getPetId() {
+//        val user = mAuth.currentUser
+//        database = FirebaseDatabase.getInstance().getReference("Pets")
+//        database.child(user?.uid.toString()).addValueEventListener(object: ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val petId = snapshot.child("petId")
+//                if (petId.exists()) {
+//                    addFood(petId)
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
+//    }
+
+    private fun addFood() {
         binding.apply {
             tvHours.text = DateHelper.getCurrentDate()
             btnFoodNext.setOnClickListener {
-                val petFoodId = "asdasdas1"
                 val urlPhoto = "asdasdasd"
                 val foodName = edFoodName.text.toString()
                 val foodWeight = edFoodWeight.text.toString()
@@ -61,11 +78,11 @@ class AddFoodFragment : Fragment() {
                     }
                     else -> {
                         val petFood = PetFood(
+                            uId,
                             urlPhoto,
                             foodName,
                             foodWeight,
                             createdAt
-
                         )
                         database = FirebaseDatabase.getInstance().getReference("PetsFoods")
                         database.child(uId).push().setValue(petFood).addOnCompleteListener { task ->
