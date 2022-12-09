@@ -25,6 +25,15 @@ class SecondAddPetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val petSelected = arguments?.getString(FirstAddPetFragment.TYPE_NAME)
+        if (petSelected == "Cat"){
+            binding.petSelect.text = petSelected
+        } else {
+            binding.petSelect.text = "Asu"
+        }
+
+
         binding.btnAddPet.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
