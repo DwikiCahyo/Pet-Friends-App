@@ -55,7 +55,7 @@ class SecondAddPetFragment : Fragment() {
     private fun setAddAction() {
         binding.apply {
             binding.btnAddPet.setOnClickListener {
-                val petId = "01"
+//                val petId = "01"
                 val petName = edNamePet.text.toString()
                 val petPhoto = edPhotoPet.text.toString()
                 val date = edDatePet.text.toString()
@@ -78,14 +78,13 @@ class SecondAddPetFragment : Fragment() {
                     }
                     else -> {
                         val petModel = PetModel(
-                            petId,
                             uId,
                             petPhoto,
                             petName,
                             jenisPet,
                             gender,
                             date,
-                            createdAt
+                            createdAt,
                         )
 
                         database = FirebaseDatabase.getInstance().getReference("Pets")
