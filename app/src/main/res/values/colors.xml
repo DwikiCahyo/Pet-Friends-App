@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Blue-->
-    <color name="blue">#1194AA</color>
-    <color name="blue_light">#FFBB86FC</color>
-    <color name="blue_dark">#FF6200EE</color>
+    <color name="blue">#08D9D6</color>
+    <color name="blue_light">#95E1D3</color>
+    <color name="blue_dark">#3F72AF</color>
     <color name="sky_blue">#48CAE4</color>
 
     <!--Gray-->

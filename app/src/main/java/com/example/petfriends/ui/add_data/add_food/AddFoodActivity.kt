@@ -3,6 +3,7 @@ package com.example.petfriends.ui.add_data.add_food
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.petfriends.R
 import com.example.petfriends.data.local.database.entity.PetFood
@@ -52,7 +53,7 @@ class AddFoodActivity : AppCompatActivity() {
 
                 when {
                     foodname.isEmpty() -> {
-
+                        edNameFood.error = getString(R.string.enter_name)
                     }
                     foodkind.isEmpty() -> {
 
@@ -75,14 +76,14 @@ class AddFoodActivity : AppCompatActivity() {
 
                         }
                         database = FirebaseDatabase.getInstance().getReference("Pets")
-                        database.child(uId).setValue(
-                            petFood
-                        ).addOnCompleteListener(this@AddFoodActivity){ task ->
+                        database.child(uId).setValue(petFood).addOnCompleteListener(this@AddFoodActivity){ task ->
                             if (task.isSuccessful) {
                                 Log.w(TAG, "success")
+                                Toast.makeText(this@AddFoodActivity, getString(R.string.success), Toast.LENGTH_SHORT).show()
 //                                viewModel.insertPetFoods(petFood as PetFood)
                             }else {
                                 Log.w(TAG, "failure", task.exception)
+                                Toast.makeText(this@AddFoodActivity, getString(R.string.failed), Toast.LENGTH_SHORT).show()
                             }
                         }
 

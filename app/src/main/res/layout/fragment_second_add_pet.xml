@@ -34,32 +34,31 @@
             tools:ignore="Autofill"/>
 
         <EditText
-            android:id="@+id/ed_age_pet"
+            android:id="@+id/ed_date_pet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_below="@+id/ed_photo_pet"
-            android:hint="Age"
+            android:layout_marginTop="8dp"
+            android:hint="Birthday"
             android:inputType="text"
-            tools:ignore="Autofill"/>
+            tools:ignore="Autofill" />
 
-        <EditText
-            android:id="@+id/ed_jenis_pet"
+        <TextView
+            android:id="@+id/tv_jenis_pet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_date_pet"
             android:layout_marginTop="8dp"
-            android:layout_below="@+id/ed_age_pet"
-            android:hint="Jenis"
-            android:inputType="text"
+            tools:text="jenis"
             tools:ignore="Autofill" />
 
         <EditText
             android:id="@+id/ed_gender_pet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_jenis_pet"
             android:layout_marginTop="8dp"
-            android:layout_below="@+id/ed_jenis_pet"
-            android:hint="Age"
+            android:hint="Gender"
             android:inputType="text"
             tools:ignore="Autofill" />
 

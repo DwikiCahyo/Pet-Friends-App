@@ -12,9 +12,9 @@
 
     <string name="sign_up">Sign up</string>
     <string name="already_have_an_account">Already have an account?</string>
-    <string name="enter_name">Enter name!</string>
-    <string name="enter_email">Enter email!</string>
-    <string name="enter_password">Enter password!</string>
+    <string name="enter_name">Name can not be empty!</string>
+    <string name="enter_email">Email can not be empty!</string>
+    <string name="enter_password">Password can not be empty!</string>
     <string name="length_password">Password must be at least 6 characters!</string>
     <string name="email_invalid">Must valid email!</string>
     <string name="email_is_used">Email is already taken</string>
@@ -48,12 +48,15 @@
     <string name="kind">Kind</string>
     <string name="weight">Weight</string>
     <string name="date">Date</string>
-    <string name="food_amount">Enter amount</string>
+    <string name="food_name">Enter food name</string>
+    <string name="food_amount">Enter amount (g)</string>
     <string name="next">Next</string>
+    <string name="error_food_name">Food name can not be empty!</string>
+    <string name="error_weight">Food weight can not be empty!</string>
 
     <string name="add">Add</string>
 
-    <string name="name_string" formatted="true">"Welcome %s ,What Type is Your Pet?"</string>
+    <string name="name_string" formatted="true">"Welcome %s,What Type is Your Pet?"</string>
     <string name="select">Select</string>
 
     <string name="day">Tuesday</string>

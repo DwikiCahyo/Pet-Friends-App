@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -28,6 +29,7 @@ import java.util.regex.Pattern
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var database: DatabaseReference
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,11 +106,30 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
+        database = FirebaseDatabase.getInstance().getReference("Pets")
+        val user = mAuth.currentUser
         if (currentUser != null){
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+            database.child(user?.uid.toString()).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val petCreated = snapshot.child("petCreated")
+                    if (petCreated.exists()) {
+                        Log.d(TAG, "Success ${petCreated}")
+                        val mainactivity = Intent(this@LoginActivity, MainActivity::class.java)
+                        mainactivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(mainactivity)
+                    }else {
+                        val addpetactivity = Intent(this@LoginActivity, MainAddPetActivity::class.java)
+                        addpetactivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(addpetactivity)
+                    }
+                    finish()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d(TAG, error.message)
+                }
+
+            })
         }
     }
 
@@ -145,10 +166,11 @@ class LoginActivity : AppCompatActivity() {
                                         setTitle(getString(R.string.success))
                                         setMessage(getString(R.string.success_sign_in))
                                         setPositiveButton(getString(R.string.cont)){ _, _ ->
-                                            val intent = Intent(this@LoginActivity, MainAddPetActivity::class.java)
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                                            startActivity(intent)
-                                            finish()
+//                                            val intent = Intent(this@LoginActivity, MainAddPetActivity::class.java)
+//                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//                                            startActivity(intent)
+//                                            finish()
+                                            updateUI(mAuth.currentUser)
                                         }
                                         create()
                                         show()
