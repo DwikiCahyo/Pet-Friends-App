@@ -1,81 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.add_data.add_pet.SecondAddPetFragment">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tv_pet_profile"
+        android:layout_width="124dp"
+        android:layout_height="30dp"
+        android:text="@string/pet_profile"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_type_pet"
+        android:layout_width="117dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pet_profile"
+        tools:src="@tools:sample/backgrounds/scenic"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_input_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="18dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        app:strokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/iv_type_pet">
 
-        <EditText
-            android:id="@+id/ed_name_pet"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Pet name"
-            android:inputType="text"
-            tools:ignore="Autofill" />
+            android:padding="20dp">
 
-        <EditText
-            android:id="@+id/ed_photo_pet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_below="@+id/ed_name_pet"
-            android:hint="url photo"
-            android:inputType="text"
-            tools:ignore="Autofill"/>
+            <com.example.petfriends.ui.custom.CustomInputForm
+                android:id="@+id/ed_name_pet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:maxHeight="48dp"
+                android:layout_marginTop="15dp"
+                android:hint="@string/pet_name"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill" />
 
-        <EditText
-            android:id="@+id/ed_date_pet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ed_photo_pet"
-            android:layout_marginTop="8dp"
-            android:hint="Birthday"
-            android:inputType="text"
-            tools:ignore="Autofill" />
+            <com.example.petfriends.ui.custom.CustomInputForm
+                android:id="@+id/ed_photo_pet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:maxHeight="48dp"
+                android:layout_marginTop="15dp"
+                android:hint="@string/url_photo"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ed_name_pet"
+                tools:ignore="Autofill"/>
 
-        <TextView
-            android:id="@+id/tv_jenis_pet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ed_date_pet"
-            android:layout_marginTop="8dp"
-            tools:text="jenis"
-            tools:ignore="Autofill" />
+            <com.example.petfriends.ui.custom.CustomInputForm
+                android:id="@+id/ed_date_pet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:maxHeight="48dp"
+                android:layout_marginTop="15dp"
+                android:hint="@string/birthday"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ed_photo_pet"
+                tools:ignore="Autofill" />
 
-        <EditText
-            android:id="@+id/ed_gender_pet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_jenis_pet"
-            android:layout_marginTop="8dp"
-            android:hint="Gender"
-            android:inputType="text"
-            tools:ignore="Autofill" />
-        <TextView
-            android:id="@+id/pet_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Jancok"
-            android:layout_below="@+id/ed_gender_pet"
-            />
+            <TextView
+                android:id="@+id/tv_jenis_pet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAllCaps="true"
+                tools:text="Jenis"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ed_gender_pet"
+                tools:ignore="Autofill" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_add_pet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_below="@+id/ed_gender_pet"
-            android:text="Done"/>
-    </RelativeLayout>
+            <com.example.petfriends.ui.custom.CustomInputForm
+                android:id="@+id/ed_gender_pet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:maxHeight="48dp"
+                android:layout_below="@+id/tv_jenis_pet"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:hint="Gender"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ed_date_pet"
+                tools:ignore="Autofill" />
 
-</FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_pet"
+        android:layout_width="100dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_input_data"
+        android:text="@string/done"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

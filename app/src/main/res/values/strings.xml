@@ -61,4 +61,9 @@
 
     <string name="day">Tuesday</string>
     <string name="next_button">Next</string>
+    <string name="pet_profile">Pet Profile</string>
+    <string name="pet_name">Pet name</string>
+    <string name="url_photo">url photo</string>
+    <string name="birthday">Birthday</string>
+    <string name="done">Done</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.petfriends.ui.add_data.add_pet
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import com.example.petfriends.R
 import com.example.petfriends.data.local.model.PetModel
 import com.example.petfriends.databinding.FragmentSecondAddPetBinding
@@ -28,6 +30,11 @@ class SecondAddPetFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var jenisPet: String
 
+    private lateinit var catImage:Drawable
+    private lateinit var dogImage:Drawable
+    private var catTextColor:Int? = null
+    private var dogTextColor:Int? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,16 +46,38 @@ class SecondAddPetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //Auth from firebase
         mAuth = Firebase.auth
 
+        //Set Style based on pet type
+        catImage =  ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.cat_image,null) as Drawable
+        dogImage = ResourcesCompat.getDrawable(requireActivity().resources,R.drawable.dog_image,null) as Drawable
+        catTextColor =
+            ResourcesCompat.getColor(requireActivity().resources,R.color.pink,null)// Pink
+        dogTextColor = ResourcesCompat.getColor(requireActivity().resources,R.color.blue,null)
+
+        //get Jenis from first add
         jenisPet = arguments?.getString(FirstAddPetFragment.TYPE_NAME).toString()
 
 
+        if (jenisPet == "Cat"){
+            binding.apply {
+                ivTypePet.setImageDrawable(catImage)
+                tvJenisPet.setTextColor(catTextColor!!)
+                cvInputData.strokeColor = catTextColor!!
+            }
 
+
+        } else{
+            binding.apply {
+                ivTypePet.setImageDrawable(dogImage)
+                tvJenisPet.setTextColor(dogTextColor!!)
+                cvInputData.strokeColor = dogTextColor!!
+            }
+
+        }
 
         binding.tvJenisPet.text = jenisPet
-
         setAddAction()
     }
 
