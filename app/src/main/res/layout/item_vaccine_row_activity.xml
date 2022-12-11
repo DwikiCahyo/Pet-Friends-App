@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -19,37 +20,38 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_layout_box"
         android:padding="20dp"
-  >
-
-        <TextView
-            android:id="@+id/tv_categories_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="Vaccine" />
+        >
 
         <TextView
             android:id="@+id/tv_categories_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="15sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Vaccine"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_categories_name"
-            tools:text="Rabies" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
-            android:id="@+id/tv_hour_pet"
+            android:id="@+id/tv_vaccine_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="15sp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_categories_information"
-            tools:text="08.00-08.30" />
+            tools:text="Rabies" />
+
+        <TextView
+            android:id="@+id/tv_food_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_vaccine_name"
+            tools:text="18 Desember 2022" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,7 +15,7 @@ object DateHelper {
         return dayFormat.format(day)
     }
     fun getCurrentHours(): String {
-        val hoursFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        val hoursFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val hours = Date()
         return hoursFormat.format(hours)
     }

@@ -50,17 +50,18 @@ class AddFoodFragment : Fragment() {
 
         hours = String()
 
+
         binding.apply {
             ivChangeHours.setOnClickListener {
                 AlertDialog.Builder(context).apply {
                     setTitle(getString(R.string.edit_hours))
                     setPositiveButton(getString(R.string.yes)){_, _ ->
                         showEditHours(true)
-                        hours = edHours.text.toString()
+                        ivChangeHours.visibility = View.GONE
+                        saveHours()
                         show().dismiss()
                     }
                     setNegativeButton(getString(R.string.no)){_, _ ->
-                        showEditHours(false)
                         show().dismiss()
                     }
                     create()
@@ -71,25 +72,37 @@ class AddFoodFragment : Fragment() {
         }
 
 
-        val day = DateHelper.getCurrentDay()
-        Toast.makeText(context, "current day:" +day, Toast.LENGTH_SHORT).show()
-
         addFood()
-        changeToEditText()
-
     }
 
-    private fun changeToEditText() {
-
+    private fun saveHours() {
+        binding.apply {
+            ivSaveHours.visibility = View.VISIBLE
+            ivSaveHours.setOnClickListener {
+                AlertDialog.Builder(context).apply {
+                    setTitle(getString(R.string.save_hours))
+                    setPositiveButton(getString(R.string.yes)){_, _ ->
+                        showEditHours(false)
+                        hours = edHours.text.toString()
+                        tvHours.text = hours
+                        ivSaveHours.visibility = View.GONE
+                        show().dismiss()
+                    }
+                    setNegativeButton(getString(R.string.no)){_, _ ->
+                        show().dismiss()
+                    }
+                    create()
+                    show()
+                }
+            }
+        }
     }
 
     private fun addFood() {
-
         showLoading(false)
         binding.apply {
 
-//            tvHours.text = DateHelper.getCurrentHours()
-            tvHours.text = hours
+            tvHours.text = DateHelper.getCurrentHours()
             tvDay.text = DateHelper.getCurrentDay()
             tvDate.text = DateHelper.getCurrentDate()
             btnFoodNext.setOnClickListener {

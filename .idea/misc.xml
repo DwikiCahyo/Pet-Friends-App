@@ -16,17 +16,21 @@
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/activity_main_add_pet.xml" value="0.1" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/custom_edit_hours.xml" value="0.25" />
+        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/custom_calendar_day.xml" value="0.1" />
+        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/custom_edit_hours.xml" value="0.22" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/event_cell.xml" value="0.1" />
-        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_add_food.xml" value="0.33" />
+        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_add_food.xml" value="0.25" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_bookmark.xml" value="0.22" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_category.xml" value="0.25" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_discovery.xml" value="0.22" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_first_add_pet.xml" value="0.22" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_home.xml" value="0.17255434782608695" />
+        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_hours_dialog.xml" value="0.1" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/fragment_second_add_pet.xml" value="0.33" />
+        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/item_food_row_activity.xml" value="0.2" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/item_row_activity.xml" value="0.22" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/item_row_pet.xml" value="0.1" />
+        <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/item_vaccine_row_activity.xml" value="0.15" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/list_item_dropdown_day.xml" value="0.1" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/layout/toolbar.xml" value="0.22" />
         <entry key="..\:/Dicoding/Pet-Friends-App/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />

@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +18,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
+import java.util.*
 
 class BookmarkFragment : Fragment() {
 
@@ -31,8 +31,6 @@ class BookmarkFragment : Fragment() {
     private lateinit var itemList: ArrayList<ItemList>
     private lateinit var listItemRecylerView: RecyclerView
 
-    private val monthYearText: TextView? = null
-    private val calendarRecyclerView: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +44,8 @@ class BookmarkFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        CalendarUtils.selectedDate = LocalDate.now()
+
         itemList = arrayListOf<ItemList>()
 
         mAuth = Firebase.auth
@@ -57,6 +57,7 @@ class BookmarkFragment : Fragment() {
         listItem()
 //        CalendarUtils.selectedDate = LocalDate.now()
 //        setMonthView()
+
     }
 
     private fun listItem() {
@@ -66,23 +67,21 @@ class BookmarkFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val key: String = snapshot.key.toString()
-                    database.child(user?.uid.toString()).child(key).addValueEventListener(object : ValueEventListener{
+                    database.child(key).addValueEventListener(object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if (snapshot.exists()) {
                                 for (itemSnapshot in snapshot.children) {
                                     val item = itemSnapshot.getValue(ItemList::class.java)
-                                    Log.d(TAG, "child key: ${itemSnapshot.key}")
                                     itemList.add(item!!)
                                 }
                                 Log.d(TAG, "Success")
                                 Toast.makeText(context, "Data found", Toast.LENGTH_SHORT).show()
                                 binding.rvListItem.adapter = ListItemAdapter(itemList)
-
                             }
-//                            else {
-//                                Log.d(TAG, "Failed")
-//                                Toast.makeText(context, "Data not found", Toast.LENGTH_SHORT).show()
-//                            }
+                            else {
+                                Log.d(TAG, "Failed")
+                                Toast.makeText(context, "Data not found", Toast.LENGTH_SHORT).show()
+                            }
                         }
                         override fun onCancelled(error: DatabaseError) {
                             Log.d(TAG, error.message)

@@ -41,6 +41,5 @@ data class ItemList(
     val createdAt: String? = null,
     val name: String? = null,
     val uId: String? = null,
-    val urlPhoto: String? = null,
     val weight: String? = null
 )

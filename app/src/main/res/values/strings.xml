@@ -72,4 +72,7 @@
     <string name="edit_hours">Edit hours?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="select_day">Select day</string>
+    <string name="save_hours">Save hours?</string>
+    <string name="empty_hours">Enter hours!</string>
 </resources>
