@@ -109,6 +109,7 @@ class LoginActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("Pets")
         val user = mAuth.currentUser
         if (currentUser != null){
+            showLoading(true)
             database.child(user?.uid.toString()).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val petCreated = snapshot.child("petCreated")
@@ -118,6 +119,7 @@ class LoginActivity : AppCompatActivity() {
                         mainactivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(mainactivity)
                     }else {
+                        Log.d(TAG, "Add Pet")
                         val addpetactivity = Intent(this@LoginActivity, MainAddPetActivity::class.java)
                         addpetactivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(addpetactivity)
