@@ -79,20 +79,41 @@
                 app:layout_constraintTop_toBottomOf="@id/ed_name_pet"
                 tools:ignore="Autofill"/>
 
-            <com.example.petfriends.ui.custom.CustomInputForm
-                android:id="@+id/ed_date_pet"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/button_calendar"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:maxHeight="48dp"
-                android:layout_marginTop="15dp"
-                android:hint="@string/birthday"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:inputType="text"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_baseline_calendar_month_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ed_photo_pet"
-                tools:ignore="Autofill" />
+                />
+
+            <!--            <com.example.petfriends.ui.custom.CustomInputForm-->
+<!--                android:id="@+id/ed_date_pet"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:maxHeight="48dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:hint="@string/birthday"-->
+<!--                android:paddingStart="15dp"-->
+<!--                android:paddingEnd="15dp"-->
+<!--                android:inputType="text"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/ed_photo_pet"-->
+<!--                tools:ignore="Autofill" />-->
+
+            <TextView
+                android:id="@+id/tv_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="28dp"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/button_calendar"
+                app:layout_constraintTop_toBottomOf="@id/ed_photo_pet"
+                tools:text="BirthDay Pet" />
 
             <TextView
                 android:id="@+id/tv_jenis_pet"
@@ -120,7 +141,7 @@
                 android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ed_date_pet"
+                app:layout_constraintTop_toBottomOf="@id/button_calendar"
                 tools:ignore="Autofill" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
