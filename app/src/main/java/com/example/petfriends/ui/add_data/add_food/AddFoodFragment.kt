@@ -141,7 +141,7 @@ class AddFoodFragment : Fragment() {
                                     setTitle(getString(R.string.success))
                                     setMessage(getString(R.string.success_add_food))
                                     setPositiveButton(getString(R.string.cont)){_, _ ->
-                                        startActivity(Intent(context, MainActivity::class.java))
+                                        show().dismiss()
                                     }
                                     create()
                                     show()
