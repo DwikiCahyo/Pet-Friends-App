@@ -20,7 +20,6 @@ data class PetModel(
     val petGender: String,
     val petBirthday: String,
     val createdAt: String,
-    val petCreated: String = true
 ) : Parcelable
 
 @Parcelize
