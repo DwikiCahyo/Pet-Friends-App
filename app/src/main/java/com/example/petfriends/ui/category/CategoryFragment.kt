@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.example.petfriends.R
 import com.example.petfriends.databinding.FragmentCategoryBinding
 

@@ -56,6 +56,7 @@
     <string name="success_add_food">Success add food!</string>
     <string name="failed_add_food">Failed add food!</string>
 
+
     <string name="add">Add</string>
 
     <string name="name_string" formatted="true">"Welcome %s,What Type is Your Pet?"</string>
@@ -75,4 +76,16 @@
     <string name="select_day">Select day</string>
     <string name="save_hours">Save hours?</string>
     <string name="empty_hours">Enter hours!</string>
+
+
+    <!--    Shower -->
+    <string name="kind">Kind</string>
+    <string name="weight">Weight</string>
+    <string name="date">Date</string>
+    <string name="manage_shower">Manage Shower</string>
+    <string name="water_type">Enter Water Type</string>
+    <string name="error_type">Water Type can not be empty!</string>
+    <string name="success_add_shower">Success add shower!</string>
+    <string name="failed_add_shower">Failed add shower!</string>
+
 </resources>
