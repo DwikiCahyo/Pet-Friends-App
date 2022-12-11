@@ -64,7 +64,10 @@ data class PetShower(
     val petId: String,
     val uId: String,
     val petShampooName: String,
-    val petShowerDate: Date?,
+    val petShowerDate: String,
+    val day: String,
+    val date: String,
+    val createdAt: String,
 //    val createdAt: Date?
 )
 
