@@ -1,14 +1,18 @@
 package com.example.petfriends.ui.add_data.add_pet
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import com.example.petfriends.R
 import com.example.petfriends.data.local.model.PetModel
@@ -20,8 +24,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
-class SecondAddPetFragment : Fragment() {
+class SecondAddPetFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private var _binding: FragmentSecondAddPetBinding? = null
     private val binding get() = _binding!!
@@ -35,6 +40,13 @@ class SecondAddPetFragment : Fragment() {
     private var catTextColor:Int? = null
     private var dogTextColor:Int? = null
 
+    var day = 0
+    var month: Int = 0
+    var year: Int = 0
+    var myDay = 0
+    var myMonth: Int = 0
+    var myYear: Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +56,7 @@ class SecondAddPetFragment : Fragment() {
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Auth from firebase
@@ -77,6 +90,18 @@ class SecondAddPetFragment : Fragment() {
 
         }
 
+        binding.buttonCalendar.setOnClickListener {
+
+            val calendar: Calendar = Calendar.getInstance()
+            day = calendar.get(Calendar.DAY_OF_MONTH)
+            month = calendar.get(Calendar.MONTH)
+            year = calendar.get(Calendar.YEAR)
+            val datePickerDialog =
+                DatePickerDialog(requireContext(),this , year, month,day)
+            datePickerDialog.show()
+
+        }
+
         binding.tvJenisPet.text = jenisPet
         setAddAction()
     }
@@ -87,7 +112,7 @@ class SecondAddPetFragment : Fragment() {
 //                val petId = "01"
                 val petName = edNamePet.text.toString()
                 val petPhoto = edPhotoPet.text.toString()
-                val date = edDatePet.text.toString()
+                val date = tvBirthday.text.toString()
                 val gender = edGenderPet.text.toString()
                 val uId = mAuth.currentUser?.uid.toString()
                 val createdAt = DateHelper.getCurrentDate()
@@ -98,9 +123,6 @@ class SecondAddPetFragment : Fragment() {
                     }
                     petPhoto.isEmpty() -> {
                         edPhotoPet.error = "Error"
-                    }
-                    date.isEmpty() -> {
-                        edDatePet.error = "Error"
                     }
                     gender.isEmpty() -> {
                         edGenderPet.error = "Error"
@@ -144,6 +166,13 @@ class SecondAddPetFragment : Fragment() {
 
     companion object {
         private const val TAG = "SecondAddPetFragment"
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        myDay = dayOfMonth
+        myYear = year
+        myMonth = month+1
+        binding.tvBirthday.text = "$myYear/$myMonth/$myDay"
     }
 
 }
