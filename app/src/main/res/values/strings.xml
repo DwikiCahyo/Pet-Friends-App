@@ -82,5 +82,11 @@
     <string name="error_type">Water Type can not be empty!</string>
     <string name="success_add_shower">Success add shower!</string>
     <string name="failed_add_shower">Failed add shower!</string>
+    <string name="biodata">Biodata</string>
+    <string name="pet_name_text">Nama : %s</string>
+    <string name="pet_jenis_text">Jenis : %s</string>
+    <string name="pet_gender_text">Gender : %s</string>
+    <string name="pet_birthday_text">Birthday : %s</string>
+    <string name="no_pet_found">No Pet Found</string>
 
 </resources>

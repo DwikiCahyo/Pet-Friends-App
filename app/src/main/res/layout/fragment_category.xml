@@ -66,7 +66,6 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="@color/red"
-                android:layout_toEndOf="@+id/btn_add_vaccine"
                 android:background="@drawable/custom_button_box"
                 android:drawableTop="@drawable/ic_baseline_pets_24"
                 android:padding="8dp"
@@ -99,8 +98,8 @@
         app:strokeWidth="2dp"
         app:cardCornerRadius="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/your_pet">
 
         <LinearLayout

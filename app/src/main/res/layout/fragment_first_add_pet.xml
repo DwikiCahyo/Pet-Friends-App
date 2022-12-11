@@ -17,7 +17,7 @@
         android:layout_margin="60dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="24sp"
+        android:textSize="20sp"
         tools:text="Welcome Darman, What Type is Your Pet?"
         />
 

@@ -156,6 +156,6 @@ class BookmarkFragment : Fragment() {
     }
 
     companion object {
-        private const val TAG = "BookmarkFragment"
+         const val TAG = "BookmarkFragment"
     }
 }

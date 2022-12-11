@@ -36,7 +36,13 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mAuth = Firebase.auth
+        val user = Firebase.auth.currentUser
 
+        user?.let {
+
+            binding.tvNameProfile.text = user.displayName
+            binding.tvEmailProfile.text = user.email
+        }
         binding.btnLogout.setOnClickListener {
             Toast.makeText(context, getString(R.string.success_logout), Toast.LENGTH_SHORT).show()
             mAuth.signOut()
