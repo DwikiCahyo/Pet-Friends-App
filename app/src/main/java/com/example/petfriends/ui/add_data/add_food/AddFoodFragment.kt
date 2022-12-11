@@ -109,11 +109,11 @@ class AddFoodFragment : Fragment() {
                 val hours = tvHours.text.toString()
                 val day = tvDay.text.toString()
                 val date = tvDate.text.toString()
-                val urlPhoto = "asdasdasd"
+                val cattegoryName = "Food"
                 val foodName = edFoodName.text.toString()
                 val foodWeight = edFoodWeight.text.toString()
                 val uId = mAuth.currentUser?.uid.toString()
-                val createdAt = DateHelper.getCurrentDate()
+                val createdAt = DateHelper.getCurrentTimeStamp()
                 when {
                     foodName.isEmpty() -> {
                         edFoodName.error = getString(R.string.error_food_name)
@@ -122,9 +122,13 @@ class AddFoodFragment : Fragment() {
                         edFoodWeight.error = getString(R.string.error_weight)
                     }
                     else -> {
+
+                        database = FirebaseDatabase.getInstance().getReference("PetsFoods")
+                        val petFoodId = database.push().key.toString()
                         val petFood = PetFood(
+                            petFoodId,
                             uId,
-                            urlPhoto,
+                            cattegoryName,
                             foodName,
                             foodWeight,
                             hours,
@@ -132,8 +136,7 @@ class AddFoodFragment : Fragment() {
                             date,
                             createdAt
                         )
-                        database = FirebaseDatabase.getInstance().getReference("PetsFoods")
-                        database.child(uId).push().setValue(petFood).addOnCompleteListener { task ->
+                        database.child(uId).child(petFoodId).setValue(petFood).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 showLoading(false)
                                 Log.w(TAG, "success")

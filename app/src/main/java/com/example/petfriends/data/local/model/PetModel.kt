@@ -24,10 +24,10 @@ data class PetModel(
 
 @Parcelize
 data class PetFood(
-//    var petFoodId: String,
+    var petFoodId: String,
     val uId: String,
 //    val petId: String,
-    var urlPhoto: String,
+    var cattegoryName: String,
     var name: String,
     var weight: String,
     val hours: String,
@@ -38,8 +38,11 @@ data class PetFood(
 
 
 data class ItemList(
-    val createdAt: String? = null,
+    val petFoodId: String? = null,
+    val date: String? = null,
+    val cattegoryName: String? = null,
     val name: String? = null,
+    val key: String? = null,
     val uId: String? = null,
     val weight: String? = null
 )
