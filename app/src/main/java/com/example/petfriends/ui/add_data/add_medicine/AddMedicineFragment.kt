@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.petfriends.R
-import com.example.petfriends.data.local.database.entity.PetMedicine
 import com.example.petfriends.data.local.model.PetModel
 import com.example.petfriends.databinding.FragmentAddMedicineBinding
 import com.example.petfriends.utils.DateHelper
