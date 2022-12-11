@@ -75,4 +75,11 @@
     <string name="select_day">Select day</string>
     <string name="save_hours">Save hours?</string>
     <string name="empty_hours">Enter hours!</string>
+
+<!--    Pet Biodata-->
+    <string name="pet_name_text">Nama : %s</string>
+    <string name="pet_jenis_text">Jenis : %s</string>
+    <string name="pet_gender_text">Gender : %s</string>
+    <string name="pet_birthday_text">Birthday: %s</string>
+    <string name="biodata">Biodata</string>
 </resources>
