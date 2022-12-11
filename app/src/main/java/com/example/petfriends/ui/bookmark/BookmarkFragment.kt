@@ -75,7 +75,7 @@ class BookmarkFragment : Fragment() {
                                     itemList.add(item!!)
                                 }
                                 Log.d(TAG, "Success")
-                                Toast.makeText(context, "Data found", Toast.LENGTH_SHORT).show()
+//                                Toast.makeText(context, "Data found", Toast.LENGTH_SHORT).show()
                                 binding.rvListItem.adapter = ListItemAdapter(itemList)
                             }
                             else {
@@ -105,6 +105,6 @@ class BookmarkFragment : Fragment() {
     }
 
     companion object {
-        private const val TAG = "BookmarkFragment"
+        const val TAG = "BookmarkFragment"
     }
 }
