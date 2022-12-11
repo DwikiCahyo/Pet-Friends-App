@@ -2,20 +2,23 @@ package com.example.petfriends.ui.bookmark
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petfriends.data.local.model.ItemList
 import com.example.petfriends.databinding.FragmentBookmarkBinding
 import com.example.petfriends.ui.adapter.ListItemAdapter
+import com.example.petfriends.utils.CalendarUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
 
 class BookmarkFragment : Fragment() {
 
@@ -27,6 +30,9 @@ class BookmarkFragment : Fragment() {
 
     private lateinit var itemList: ArrayList<ItemList>
     private lateinit var listItemRecylerView: RecyclerView
+
+    private val monthYearText: TextView? = null
+    private val calendarRecyclerView: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +55,8 @@ class BookmarkFragment : Fragment() {
         listItemRecylerView.setHasFixedSize(true)
 
         listItem()
+//        CalendarUtils.selectedDate = LocalDate.now()
+//        setMonthView()
     }
 
     private fun listItem() {

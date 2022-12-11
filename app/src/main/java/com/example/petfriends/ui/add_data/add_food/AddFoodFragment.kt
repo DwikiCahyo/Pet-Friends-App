@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.petfriends.R
 import com.example.petfriends.data.local.model.PetFood
 import com.example.petfriends.databinding.FragmentAddFoodBinding
@@ -22,10 +23,16 @@ class AddFoodFragment : Fragment() {
     private var _binding: FragmentAddFoodBinding? = null
     private val binding get() = _binding!!
 
+
     private lateinit var mAuth : FirebaseAuth
     private lateinit var database: DatabaseReference
 
+    private lateinit var hours: String
+    private lateinit var day: String
+    private lateinit var date: String
+
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -41,15 +48,54 @@ class AddFoodFragment : Fragment() {
 
         mAuth = Firebase.auth
 
+        hours = String()
+
+        binding.apply {
+            ivChangeHours.setOnClickListener {
+                AlertDialog.Builder(context).apply {
+                    setTitle(getString(R.string.edit_hours))
+                    setPositiveButton(getString(R.string.yes)){_, _ ->
+                        showEditHours(true)
+                        hours = edHours.text.toString()
+                        show().dismiss()
+                    }
+                    setNegativeButton(getString(R.string.no)){_, _ ->
+                        showEditHours(false)
+                        show().dismiss()
+                    }
+                    create()
+                    show()
+                }
+            }
+            ivChangeDate.setOnClickListener { changeDay() }
+        }
+
+
+        val day = DateHelper.getCurrentDay()
+        Toast.makeText(context, "current day:" +day, Toast.LENGTH_SHORT).show()
+
         addFood()
+        changeToEditText()
+
+    }
+
+    private fun changeToEditText() {
+
     }
 
     private fun addFood() {
+
         showLoading(false)
         binding.apply {
-            ivChangeHours.setOnClickListener { changeHours() }
-            tvHours.text = DateHelper.getCurrentDate()
+
+//            tvHours.text = DateHelper.getCurrentHours()
+            tvHours.text = hours
+            tvDay.text = DateHelper.getCurrentDay()
+            tvDate.text = DateHelper.getCurrentDate()
             btnFoodNext.setOnClickListener {
+                val hours = tvHours.text.toString()
+                val day = tvDay.text.toString()
+                val date = tvDate.text.toString()
                 val urlPhoto = "asdasdasd"
                 val foodName = edFoodName.text.toString()
                 val foodWeight = edFoodWeight.text.toString()
@@ -68,6 +114,9 @@ class AddFoodFragment : Fragment() {
                             urlPhoto,
                             foodName,
                             foodWeight,
+                            hours,
+                            day,
+                            date,
                             createdAt
                         )
                         database = FirebaseDatabase.getInstance().getReference("PetsFoods")
@@ -97,7 +146,6 @@ class AddFoodFragment : Fragment() {
                                     create()
                                     show()
                                 }
-//                                Toast.makeText(context, getString(R.string.failed), Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -106,15 +154,39 @@ class AddFoodFragment : Fragment() {
         }
     }
 
-    private fun changeHours() {
-
+    private fun changeDay() {
+        binding.apply {
+            tvDate.visibility = View.GONE
+            dpDay.visibility = View.VISIBLE
+        }
     }
 
     private fun showLoading(isLoading: Boolean){
         binding.pbAddpetfood.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+    private fun showEditHours(isEdit: Boolean) {
+        binding.apply {
+            if (isEdit) {
+                tvHours.visibility = View.GONE
+                edHours.visibility = View.VISIBLE
+            } else {
+                tvHours.visibility = View.VISIBLE
+                edHours.visibility = View.GONE
+            }
+        }
+    }
 
+    private fun showEditDay(isEdit: Boolean) {
+        binding.apply {
+            if (isEdit) {
+                tvDay.visibility = View.GONE
+                tvDate.visibility = View.GONE
+                dpDay.visibility = View.VISIBLE
+                edDate.visibility = View.VISIBLE
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

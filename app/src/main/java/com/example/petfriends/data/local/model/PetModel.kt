@@ -30,6 +30,9 @@ data class PetFood(
     var urlPhoto: String,
     var name: String,
     var weight: String,
+    val hours: String,
+    val day: String,
+    val date: String,
     var createdAt: String
 ) : Parcelable
 

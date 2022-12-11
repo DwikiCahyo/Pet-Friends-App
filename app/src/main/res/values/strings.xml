@@ -68,4 +68,8 @@
     <string name="url_photo">url photo</string>
     <string name="birthday">Birthday</string>
     <string name="done">Done</string>
+
+    <string name="edit_hours">Edit hours?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
